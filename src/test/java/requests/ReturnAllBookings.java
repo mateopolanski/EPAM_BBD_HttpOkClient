@@ -34,7 +34,7 @@ public class ReturnAllBookings {
                 return entity != null ? EntityUtils.toString(entity) : null;
             } else {
                 throw new ClientProtocolException("Unexpected response status: " + status);
-            }
+             }
             };
             String responseBody = httpclient.execute(httpget, responseHandler);
             System.out.println("----------------------------------------");

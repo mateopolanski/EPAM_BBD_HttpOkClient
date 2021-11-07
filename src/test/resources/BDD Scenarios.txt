@@ -56,5 +56,5 @@ chosen scenarios - 2 scenarios below
 
     Examples:
       | id |
-      | 29 |
-      | 22 |
+      | 9 |
+      | 2 |

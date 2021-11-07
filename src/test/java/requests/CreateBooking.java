@@ -31,7 +31,7 @@ public class CreateBooking {
                     "    \"depositpaid\": true,\n" +
                     "    \"bookingdates\": {\n" +
                     "        \"checkin\": \"2022-01-01\",\n" +
-                    "        \"checkout\": \"67\"\n" +
+                    "        \"checkout\": \"2022-02-01\"\n" +
                     "    },\n" +
                     "    \"additionalneeds\": \"Breakfast\"\n" +
                     "}";
