@@ -1,0 +1,60 @@
+# source
+# https://restful-booker.herokuapp.com/apidoc/index.html#api-Booking-CreateBooking
+
+Feature: Directory Service
+
+  As a developer
+  I want to be able to send requests through Herokuapp
+
+  Scenario Outline: create token
+    Given Valid <credentials>
+    When I send POST request to API
+    Then I get response code 200
+    And I receive a token
+
+    Examples:
+      | credentials |
+      | {"username":"admin","password":"password123"}|
+
+  Scenario Outline: get all existing bookings
+    Given The booking list is not empty
+    When I send GET request to /URL
+    Then I get response code 200 with an Array of objects with unique IDs
+
+    Examples:
+
+=========================================================================
+chosen scenarios - 2 scenarios below
+=========================================================================
+
+  Scenario Outline: get specific booking by booking id
+    Given The booking with <id> exist
+    When I send GET request to /URL
+    Then I receive <response>
+
+    Examples:
+      | id  | response |
+      | 1   | {"firstname":"Mary","lastname":"Brown","totalprice":699,"depositpaid":false,"bookingdates":{"checkin":"2019-09-25","checkout":"2021-04-30"}}                             |
+      | 9   | {"firstname":"Jim","lastname":"Brown","totalprice":966,"depositpaid":false,"bookingdates":{"checkin":"2016-05-25","checkout":"2018-11-29"},"additionalneeds":"Breakfast"}|
+
+
+  Scenario Outline: create a booking
+    Given Booking <request>
+    When I send POST request to /URL
+    Then I get response code 201
+
+    Examples:
+     | request |
+     | {"firstname":"Mati","lastname":"Test","totalprice":111,"depositpaid":true,"bookingdates":{"checkin":"2022-01-01","checkout":"2022-01-01"},"additionalneeds":"Breakfast"}|
+
+========================================================================================================================
+
+  Scenario Outline: delete booking as unauthorized user
+    Given The booking with <id> exist
+    When I send DELETE request to /URL
+    Then I get response code 403
+
+    Examples:
+      | id |
+      | 9 |
+      | 2 |
