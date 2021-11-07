@@ -13,7 +13,7 @@ import java.io.IOException;
 
 import static utility.Properties.baseURL;
 
-public class PostBooking {
+public class CreateBooking {
 
     public static void main(String[] args) throws IOException {
         postBooking();

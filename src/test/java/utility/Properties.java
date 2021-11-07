@@ -3,6 +3,7 @@ package utility;
 public class Properties {
 
     public static String baseURL = "https://restful-booker.herokuapp.com/booking";
+    public static String idBookingURL ="https://restful-booker.herokuapp.com/booking/111";
     public static String firstname = "Mati";
     public static String lastname = "Tester";
     public static int number = 12;

@@ -1,6 +1,6 @@
 package utility;
 
-public class CreateBooking {
+public class BookingFields {
 
     private String firstname;
     private String lastname;
