@@ -1,12 +1,16 @@
 package requests;
 
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpStatus;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.Asserts;
 import org.apache.http.util.EntityUtils;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
@@ -19,6 +23,7 @@ public class ReturnSpecificBooking {
         getBookingById();
 
     }
+
     public static void getBookingById() throws IOException{
         try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
 
@@ -39,6 +44,7 @@ public class ReturnSpecificBooking {
             String responseBody = httpclient.execute(httpget, responseHandler);
             System.out.println("----------------------------------------");
             System.out.println(responseBody);
+
         }
     }
 }
