@@ -7,54 +7,65 @@ Feature: Directory Service
   I want to be able to send tests through Herokuapp
 
   Scenario Outline: create token
-    Given Valid <credentials>
-    When I send POST request to API
-    Then I get response code 200
+    Given I have obtained Valid <credentials>
+    When I try to send metadata to authorize in service <auth>
+    Then I get response code 200 with status OK
     And I receive a token
 
     Examples:
       | credentials |
       | {"username":"admin","password":"password123"}|
 
+      |auth|
+      |https://restful-booker.herokuapp.com/auth
+      |
+
   Scenario Outline: get all existing bookings
-    Given The booking list is not empty
-    When I send GET request to /URL
-    Then I get response code 200 with an Array of objects with unique IDs
+    Given I have a directory to check for booking service
+    When I send GET request to service to check <bookings>
+    Then I get response code 200 with status OK
+    And I receive an Array of objects with unique ID's
 
     Examples:
+      | bookings |
+      | https://restful-booker.herokuapp.com/booking|
 
 =========================================================================
 chosen scenarios - 2 scenarios below
 =========================================================================
 
   Scenario Outline: get specific booking by booking id
-    Given The booking with <id> exist
-    When I send GET request to /URL
-    Then I receive <response>
+    Given The booking with some <id> exist in service
+    When I ask API to retrieve data from <booking> service
+    Then I get response code 200 with status OK
 
     Examples:
-      | id  | response |
-      | 1   | {"firstname":"Mary","lastname":"Brown","totalprice":699,"depositpaid":false,"bookingdates":{"checkin":"2019-09-25","checkout":"2021-04-30"}}                             |
-      | 9   | {"firstname":"Jim","lastname":"Brown","totalprice":966,"depositpaid":false,"bookingdates":{"checkin":"2016-05-25","checkout":"2018-11-29"},"additionalneeds":"Breakfast"}|
+      | id  | response      |
+      | 1   | STATUS 200 OK |
 
 
   Scenario Outline: create a booking
-    Given Booking <request>
-    When I send POST request to /URL
-    Then I get response code 201
+    Given I have a Booking <request> with appropriate format
+    When I send body with data as request to <bookings> URL
+    Then I get response in a JSON format
 
     Examples:
      | request |
      | {"firstname":"Mati","lastname":"Test","totalprice":111,"depositpaid":true,"bookingdates":{"checkin":"2022-01-01","checkout":"2022-01-01"},"additionalneeds":"Breakfast"}|
 
+     | bookings |
+     | https://restful-booker.herokuapp.com/booking|
 ========================================================================================================================
 
   Scenario Outline: delete booking as unauthorized user
-    Given The booking with <id> exist
-    When I send DELETE request to /URL
-    Then I get response code 403
+    Given The booking with unique <id> exist in the <service>
+    When I send request to remove the Booking with <id> in API
+    Then I am unable to peform action and get <response> code 403 Forbidden
 
     Examples:
-      | id |
-      | 9 |
-      | 2 |
+      | id | response |
+      | 9 |  403 Forbidden |
+      | 2 |  403 Forbidden |
+
+      | service |
+      | https://restful-booker.herokuapp.com/booking|
