@@ -1,34 +1,24 @@
-package requests;
+package model;
 
 import org.apache.http.HttpEntity;
-import org.apache.http.HttpStatus;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.Asserts;
 import org.apache.http.util.EntityUtils;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import utility.Properties;
 
 import java.io.IOException;
 
-import static utility.Properties.idBookingURL;
+public class ReturnSpecificBookingId {
 
-public class ReturnSpecificBooking {
-
-    public static void main(String...args) throws IOException {
-
-        getBookingById();
-
-    }
 
     public static void getBookingById() throws IOException{
         try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
 
             //HTTP GET method
-            HttpGet httpget = new HttpGet(idBookingURL);
+            HttpGet httpget = new HttpGet(Properties.idBookingURL);
             System.out.println("Executing request " + httpget.getRequestLine());
 
             // Create a custom response handler

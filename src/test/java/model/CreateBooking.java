@@ -1,4 +1,4 @@
-package requests;
+package model;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.ClientProtocolException;
@@ -8,20 +8,16 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import utility.Properties;
 
 import java.io.IOException;
 
-import static utility.Properties.baseURL;
-
 public class CreateBooking {
 
-    public static void main(String[] args) throws IOException {
-        postBooking();
-    }
 
     public static void postBooking() throws IOException {
         try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
-            HttpPost httpPost = new HttpPost(baseURL);
+            HttpPost httpPost = new HttpPost(Properties.baseURL);
             httpPost.setHeader("Accept", "application/json");
             httpPost.setHeader("Content-type", "application/json");
             String json = "{\n" +

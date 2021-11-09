@@ -1,10 +1,10 @@
 # source
-# https://restful-booker.herokuapp.com/apidoc/index.html#api-Booking-CreateBooking
+# https://restful-booker.herokuapp.com/apidoc/index.html#api-Booking-model.CreateBooking
 
 Feature: Directory Service
 
   As a developer
-  I want to be able to send requests through Herokuapp
+  I want to be able to send tests through Herokuapp
 
   Scenario Outline: create token
     Given Valid <credentials>
