@@ -15,5 +15,7 @@ class CreateBookingTest {
 
         CreateBooking.postBooking();
 
+        //assertContains from properties
+
     }
 }
